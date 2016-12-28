@@ -1,4 +1,9 @@
-# 1. Drum Kit
+---
+layout: post
+title:  "1. Drum kit (sounds)"
+date:   2016-12-28 00:01:03 -0600
+author: kyletaylored
+---
 
 <style type="text/css"></style>
 
