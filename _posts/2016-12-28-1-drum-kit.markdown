@@ -1,0 +1,110 @@
+---
+layout: post
+title:  "1. Drum kit (sound board)"
+date:   2016-12-28 00:01:03 -0600
+categories: audio data css
+---
+
+<style type="text/css">
+	.key {
+		width: 70px;
+		height: 70px;
+		font-size: 30px;
+		border-radius: 4px;
+		border: 2px solid #666;
+		text-align: center;
+		float: left;
+		margin-right: 5px;
+		padding-top: 0.7em;
+		transition: all 0.1s;
+		line-height: 1em;
+	}
+	.letter {
+		display: block;
+		line-height: 0.25em;
+	}
+	.sound {
+		font-size: 8px;
+		display: inline-block;
+
+	}
+	.playing {
+		transform: scale(1.1);
+		border-color: #fbdb65;
+		font-size: 34px;
+	}
+
+</style>
+<div class="keys">
+	<div class="key" data-key="65">
+		<span class="letter">A</span>
+		<span class="sound">Bazinga</span>
+	</div>
+	<div class="key" data-key="83">
+		<span class="letter">S</span>
+		<span class="sound">Noo</span>
+	</div>
+	<div class="key" data-key="68">
+		<span class="letter">D</span>
+		<span class="sound">Boom Headshot</span>
+	</div>
+	<div class="key" data-key="70">
+		<span class="letter">F</span>
+		<span class="sound">Hadouken</span>
+	</div>
+	<div class="key" data-key="71">
+		<span class="letter">G</span>
+		<span class="sound">Falcon Punch</span>
+	</div>
+	<div class="key" data-key="72">
+		<span class="letter">H</span>
+		<span class="sound">Finish Him</span>
+	</div>
+	<div class="key" data-key="74">
+		<span class="letter">J</span>
+		<span class="sound">Hey Listen!</span>
+	</div>
+	<div class="key" data-key="75">
+		<span class="letter">K</span>
+		<span class="sound">Combo Breaker</span>
+	</div>
+	<div class="key" data-key="76">
+		<span class="letter">L</span>
+		<span class="sound">It's a trap!</span>
+	</div>
+	<div class="key" data-key="186">
+		<span class="letter">;</span>
+		<span class="sound">Bird the Word</span>
+	</div>
+</div>
+
+<audio src="https://www.myinstants.com/media/sounds/bazinga.swf.mp3" data-key="65"></audio>
+<audio src="https://www.myinstants.com/media/sounds/nooo.swf.mp3" data-key="83"></audio>
+<audio src="https://www.myinstants.com/media/sounds/boomheadshot.swf.mp3" data-key="68"></audio>
+<audio src="https://www.myinstants.com/media/sounds/hadouken.mp3" data-key="70"></audio>
+<audio src="https://www.myinstants.com/media/sounds/falconpunch.swf.mp3" data-key="71"></audio>
+<audio src="https://www.myinstants.com/media/sounds/finishhim.swf.mp3" data-key="72"></audio>
+<audio src="https://www.myinstants.com/media/sounds/hey_listen.mp3" data-key="74"></audio>
+<audio src="https://www.myinstants.com/media/sounds/combobreaker.mp3" data-key="75"></audio>
+<audio src="https://www.myinstants.com/media/sounds/itsatrap.swf.mp3" data-key="76"></audio>
+<audio src="https://www.myinstants.com/media/sounds/tindeck_1.mp3" data-key="186"></audio>
+
+<script>
+
+	function activateKey(e) {
+		const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+		const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+		if (!audio) {return;} // skip no audio.
+		audio.currentTime = 0; // rewind audio.
+		audio.play(); // play audio.
+
+		// Add / remove classes.
+		key.classList.add("playing");
+		key.addEventListener("transitionend", function(e){
+			this.classList.remove("playing");
+		});
+	}
+
+	window.addEventListener('keydown', activateKey);
+	
+</script>
