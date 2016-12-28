@@ -42,7 +42,7 @@ categories: audio data css
 	</div>
 	<div class="key" data-key="83">
 		<span class="letter">S</span>
-		<span class="sound">Noo</span>
+		<span class="sound">Haha</span>
 	</div>
 	<div class="key" data-key="68">
 		<span class="letter">D</span>
@@ -74,12 +74,12 @@ categories: audio data css
 	</div>
 	<div class="key" data-key="186">
 		<span class="letter">;</span>
-		<span class="sound">Bird the Word</span>
+		<span class="sound">Metal Gear</span>
 	</div>
 </div>
 
 <audio src="https://www.myinstants.com/media/sounds/bazinga.swf.mp3" data-key="65"></audio>
-<audio src="https://www.myinstants.com/media/sounds/nooo.swf.mp3" data-key="83"></audio>
+<audio src="https://www.myinstants.com/media/sounds/haha.swf.mp3" data-key="83"></audio>
 <audio src="https://www.myinstants.com/media/sounds/boomheadshot.swf.mp3" data-key="68"></audio>
 <audio src="https://www.myinstants.com/media/sounds/hadouken.mp3" data-key="70"></audio>
 <audio src="https://www.myinstants.com/media/sounds/falconpunch.swf.mp3" data-key="71"></audio>
@@ -92,9 +92,11 @@ categories: audio data css
 <script>
 
 	function activateKey(e) {
-		const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
-		const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
-		if (!audio) {return;} // skip no audio.
+		var audio = document.querySelector("audio[data-key=\"" + e.keyCode + "\"]");
+		var key = document.querySelector(".key[data-key=\"" + e.keyCode + "\"]");
+		if (!audio) {
+			return;
+		} // skip no audio.
 		audio.currentTime = 0; // rewind audio.
 		audio.play(); // play audio.
 
@@ -106,9 +108,11 @@ categories: audio data css
 		if (e.propertyName !== 'transform') return; // skip if not transform
 		this.classList.remove("playing");
 	}
-	
-	const keys = document.querySelectorAll(".key");
-	keys.forEach(key => key.addEventListener("transitionend", removeTransition));
+
+	var keys = document.querySelectorAll(".key");
+	keys.forEach(function (key) {
+		return key.addEventListener("transitionend", removeTransition);
+	});
 	window.addEventListener('keydown', activateKey);
 	
 </script>
