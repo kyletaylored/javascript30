@@ -22,16 +22,21 @@ categories:
 		border-radius: 100%;
 		transform: translateY(50%);
 		position: relative;
+		box-sizing: border-box;
+    padding: 15px;
 	}
 	.hand {
-		width: 45%;
+		width: 125px;
 		height: 6px;
 		background:#cce733;
-		border-radius: 5px;
+		border-bottom-left-radius: 5px;
+		border-top-left-radius: 5px;
 		position: absolute;
 		top: 50%;
 		transform-origin: 100%;
-		transform: rotate(360deg) translateX(5%);
+		transform: rotate(360deg);
+		transition: all 0.5s;
+		transition-timing-function: cubic-bezier(0, 2.2, 0.58, 1);
 	}
 </style>
 
@@ -47,25 +52,35 @@ categories:
 	const secondHand = document.querySelector(".hand.second");
 	const minuteHand = document.querySelector(".hand.minute");
 	const hourHand = document.querySelector(".hand.hour");
-	console.log(secondHand);
 
 	function setDate() {
 		const date = new Date();
 
 		const seconds = date.getSeconds();
-		const secondsDegrees = ((seconds / 60) * 360) + 90;
-		secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
-
 		const minutes = date.getMinutes();
-		const minutesDegrees = ((minutes / 60) * 360) + 90;
-		minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
-
 		const hours = date.getHours();
-		const hoursDegrees = ((hours / 60) * 360) + 90;
-		hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
 
-		const time = new Array(secondsDegrees, minutesDegrees, hoursDegrees);
-		console.log(time);
+		const time = {
+			"seconds": {"time": seconds, "hand": secondHand},
+			"minutes": {"time": minutes, "hand": minuteHand},
+			"hours":   {"time": hours, "hand": hourHand}
+		};
+		
+		// Write loop to make more efficient.
+		for (let key in time) {
+			if (time.hasOwnProperty(key)) {
+
+				let prop = time[key];
+    		let degrees = ((prop.time / 60) * 360) + 90;
+    		let transform = `rotate(${degrees}deg)`;
+    		prop.hand.style.transform = transform;
+    		
+    		// Set duration to 0 if passing over the top.
+    		let duration = (degrees == 90) ? "0s" : "0.5s";
+    		prop.hand.style.transitionDuration = duration;
+    		
+  		}
+		}
 	}
 	
 	setInterval(setDate, 1000);
