@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "CSS + JS Clock"
+title: "2. CSS + JS Clock"
 date: 2017-01-04T11:20:17-06:00
 categories:
 ---
@@ -18,7 +18,7 @@ categories:
 		height: 300px;
 		width: 300px;
 		background-color: transparent;
-		border: 10px solid #FFF;
+		border: 10px solid #cce733;
 		border-radius: 100%;
 		transform: translateY(50%);
 		position: relative;
@@ -26,7 +26,8 @@ categories:
 	.hand {
 		width: 45%;
 		height: 6px;
-		background:black;
+		background:#cce733;
+		border-radius: 5px;
 		position: absolute;
 		top: 50%;
 		transform-origin: 100%;
@@ -50,14 +51,21 @@ categories:
 
 	function setDate() {
 		const date = new Date();
+
 		const seconds = date.getSeconds();
 		const secondsDegrees = ((seconds / 60) * 360) + 90;
+		secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
 
 		const minutes = date.getMinutes();
+		const minutesDegrees = ((minutes / 60) * 360) + 90;
+		minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
 
 		const hours = date.getHours();
-		const time = [seconds, minutes, hours];
-		console.table(time);
+		const hoursDegrees = ((hours / 60) * 360) + 90;
+		hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+
+		const time = new Array(secondsDegrees, minutesDegrees, hoursDegrees);
+		console.log(time);
 	}
 	
 	setInterval(setDate, 1000);
