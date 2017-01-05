@@ -9,7 +9,7 @@ categories:
 	.clock-container {
 		width: 100%;
 		height: 600px;
-		background-image: url("https://unsplash.it/1200/600");
+		background-image: url("https://unsplash.it/1275/600");
 		background-size: cover;
 		position: relative;
 	}	
@@ -17,18 +17,19 @@ categories:
 		margin: 0 auto;
 		height: 300px;
 		width: 300px;
-		background-color: transparent;
-		border: 10px solid #cce733;
+		background-color: #ccc;
+		border: 10px solid #fff;
 		border-radius: 100%;
 		transform: translateY(50%);
 		position: relative;
 		box-sizing: border-box;
+		box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.5), inset 0px 0px 8px 0px rgba(0,0,0,0.5);
     padding: 15px;
 	}
 	.hand {
 		width: 125px;
 		height: 6px;
-		background:#cce733;
+		background:#777;
 		border-bottom-left-radius: 5px;
 		border-top-left-radius: 5px;
 		position: absolute;
