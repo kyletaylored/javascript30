@@ -37,15 +37,13 @@ categories:
     	filter: blur(var(--blur));
     }
 
-    body {
-      text-align: center;
-    }
-    body {
+    .page-content {
       background: #1c375b;
       color: white;
       font-family: 'helvetica neue', sans-serif;
       font-weight: 100;
       font-size: 50px;
+      text-align: center;
     }
     .controls {
       margin-bottom: 50px;
