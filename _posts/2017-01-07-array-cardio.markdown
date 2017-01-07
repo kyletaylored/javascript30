@@ -34,7 +34,9 @@ categories:
     
     // Array.prototype.map()
     // 2. Give us an array of the inventors' first and last names
-    const fullNames = inventors.map(item => `${item.first} ${item.last}`);
+    const fullNames = inventors.map(function(item) {
+    	return item.first +" "+ item.last;
+    });
     console.table(fullNames);
 
     
